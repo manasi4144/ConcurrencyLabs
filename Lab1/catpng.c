@@ -111,6 +111,7 @@ int main(int argc, char *argv[])
         //printf("count is %lu\n", count);
 
         free(dest_buffer);
+        //printf("\n");
         fclose(newfile);
 
     }
