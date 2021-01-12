@@ -152,8 +152,6 @@ int get_IDAT_chunk(char* bname, int print_val2)
 
 	int r1 = fread(chunk, c_bytes, 1, pngfile);
 
-	//printf("\n r1 %d", r1);
-
 	const int calcsize = num_bytes + 4;
     //printf("\n calc size is %d", calcsize);
 	U8 calc[calcsize];
@@ -168,14 +166,12 @@ int get_IDAT_chunk(char* bname, int print_val2)
 		if (i > 36 && (i < (37 + num_bytes + 4)))
 		{
 			calc[j] = chunk[i];
-            //printf("\n IDAT calc is %02x", calc[j]);
-            j++;
-			//break;
+			    //printf("\n IDAT calc is %02x", calc[j]);
+			    j++;
 		}
 		else if (i > (37 + num_bytes + 3) && (i < c_bytes))
 		{
 			crcexp[l] = chunk[i];
-    //           		printf("\n IDAT crcexp is %02x", crcexp[l]);
                 	l--;
 		}
 
@@ -285,8 +281,6 @@ int get_wh_IHDR(char* bname, int print_val)
 		U32 crc_val = 0; 	
 	 
     	crc_val = crc(calc,17); // down cast the return val to U32
-    	//printf("\n crc_val = %x\n", crc_val);
-		//printf("\n CRC exp: %x", htonl(crc_exp));
         if (crc_expected != crc_val)
         {
 			printf("\nIDHR chunk CRC error: computed %x, expected %x\n", crc_val, crc_expected);
